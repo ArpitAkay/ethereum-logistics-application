@@ -1,0 +1,24 @@
+{
+  "name": "logistics",
+  "version": "1.0.0",
+  "description": "Your project description",
+  "author": "Suresh Konakanchi",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx hardhat node",
+    "compile": "npx hardhat compile",
+    "console": "npx hardhat console",
+    "deploy": "sh ./ignition/modules/deploy.sh -n hardhat -r false",
+    "deploy:reset": "sh ./ignition/modules/deploy.sh -n hardhat -r true",
+    "test": "npx hardhat test",
+    "test:gas": "REPORT_GAS=true npx hardhat test",
+    "help": "npx hardhat help"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.4"
+  }
+}

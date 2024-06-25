@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "PoetsenOne";
+  src: local("PoetsenOne"), url("./fonts/PoetsenOne-Regular.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "DarkerGrotesque-Medium";
+  src: local("DarkerGrotesque-Medium"),
+    url("./fonts/Grotesque/DarkerGrotesque-Medium.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "DarkerGrotesque-Bold";
+  src: local("DarkerGrotesque-Bold"),
+    url("./fonts/Grotesque/DarkerGrotesque-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+html,
+body {
+  overscroll-behavior: none;
+}

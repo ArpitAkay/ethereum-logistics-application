@@ -1,0 +1,31 @@
+node_modules
+.env
+
+# Hardhat files
+/cache
+/artifacts
+
+# TypeChain files
+/typechain
+/typechain-types
+
+# solidity-coverage files
+/coverage
+/coverage.json
+
+# Hardhat Ignition default folder for deployments against a local node
+ignition/deployments
+
+# Truffle files
+/contracts/artifacts
+/contracts/Interfaces/artifacts
+
+.deploys
+.deps
+.states
+
+build
+scripts
+tests
+package-lock.json
+yarn.lock
