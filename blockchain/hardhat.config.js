@@ -16,8 +16,8 @@ module.exports = {
       chainId: 1337,
     },
     // sepolia: {
-    //   url: "https://sepolia.infura.io/v3/26dVLtNicClganw3SW8KjbUDFU3",
-    //   accounts: ["129e759796dc95a087c4774897e541b8"],
+    //   url: "https://sepolia.infura.io/v3/<API_KEY>",
+    //   accounts: ["<PRIVATE_KEY>"],
     // },
   },
   solidity: {

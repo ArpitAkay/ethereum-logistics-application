@@ -1,4 +1,9 @@
-import { ERequestStatus, EStatus, EUserRole, EWhomToVote } from "../repository/enum";
+import {
+  ERequestStatus,
+  EStatus,
+  EUserRole,
+  EWhomToVote,
+} from "../repository/enum";
 
 export const CONSTANTS = {
   //Localstorage Keys
@@ -30,7 +35,7 @@ export const CONSTANTS = {
 
   // VALUES
   HEADER_HEIGHT: 64,
-  FOOTER_HEIGHT: 36,
+  FOOTER_HEIGHT: 48,
   PINATA_BASE_PATH: "https://ipfs.io/ipfs", // ipfs: Direct view
   IPFS_BASE_URL: "https://apricot-peaceful-marlin-15.mypinata.cloud/ipfs", // ipfs: Src url
   GEO_HASH_WEBSITE: "https://www.movable-type.co.uk/scripts/geohash.html",
@@ -57,7 +62,9 @@ export const STATUS_COLOR_MAP: Record<
   10: { id: 10, color: "#f73434", name: "REJECTED", order: 11 },
   11: { id: 11, color: "#16a34a", name: "DISPUTE RESOLVED", order: 2 },
 };
-export const STATUS_OPTIONS = Object.values(STATUS_COLOR_MAP).sort((a, b) => a.order - b.order);
+export const STATUS_OPTIONS = Object.values(STATUS_COLOR_MAP).sort(
+  (a, b) => a.order - b.order
+);
 
 export const REQUEST_STATUS_MAP: Record<ERequestStatus, string> = {
   [ERequestStatus.Approved]: "#16a34a",

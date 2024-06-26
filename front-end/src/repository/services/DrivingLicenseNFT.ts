@@ -34,7 +34,7 @@ export class DrivingLicenseNFTService {
       });
       await ethereum.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: `0x539` }],
+        params: [{ chainId: `0xaa36a7` }],
       });
       this._accountAddress = accounts[0];
       this._dlNFTContract = this.getContract();
@@ -51,7 +51,10 @@ export class DrivingLicenseNFTService {
 
   getContract() {
     const provider = new Web3(window.ethereum);
-    return new provider.eth.Contract(ContractABI["abi"], DRIVING_LICENSE_NFT_ADDRESS);
+    return new provider.eth.Contract(
+      ContractABI["abi"],
+      DRIVING_LICENSE_NFT_ADDRESS
+    );
   }
 
   async validatetheNFTPresent(userUID: string): Promise<boolean> {
@@ -59,7 +62,9 @@ export class DrivingLicenseNFTService {
     if (!ethers.isAddress(userUID)) throw new Error("Invalid User UID");
     try {
       await this.ethEnabled();
-      const _isValid: boolean = await this._dlNFTContract.methods.validateNFT(userUID).call();
+      const _isValid: boolean = await this._dlNFTContract.methods
+        .validateNFT(userUID)
+        .call();
       return _isValid;
     } catch (error) {
       console.log(error);
@@ -73,10 +78,16 @@ export class DrivingLicenseNFTService {
       const provider = new ethers.BrowserProvider((window as any)?.ethereum);
       await provider.send("eth_requestAccounts", []);
       const signer = await provider.getSigner();
-      const contract = new ethers.Contract(DRIVING_LICENSE_NFT_ADDRESS, ContractABI["abi"], signer);
+      const contract = new ethers.Contract(
+        DRIVING_LICENSE_NFT_ADDRESS,
+        ContractABI["abi"],
+        signer
+      );
       const numberOfNfts = await contract.balanceOf(signer.getAddress());
       if (numberOfNfts > 0)
-        return Number(await contract.tokenOfOwnerByIndex(signer.getAddress(), 0));
+        return Number(
+          await contract.tokenOfOwnerByIndex(signer.getAddress(), 0)
+        );
       return null;
     } catch (error) {
       console.error("Error getting token IDs", error);
@@ -98,16 +109,22 @@ export class DrivingLicenseNFTService {
     }
   }
 
-  async createNewDLNFT(name: string, dlNumber: string, ipfsHash: string): Promise<void> {
+  async createNewDLNFT(
+    name: string,
+    dlNumber: string,
+    ipfsHash: string
+  ): Promise<void> {
     if (!name) throw new Error("Name is required");
     if (!dlNumber) throw new Error("DL Number is required");
     if (ipfsHash.length < 10) throw new Error("Inavlid IPFS Hash is provided");
     try {
       await this.ethEnabled();
-      await this._dlNFTContract.methods.publicMint(name, dlNumber, ipfsHash).send({
-        value: Web3.utils.toWei("0.01", "ether"),
-        from: this._accountAddress,
-      });
+      await this._dlNFTContract.methods
+        .publicMint(name, dlNumber, ipfsHash)
+        .send({
+          value: Web3.utils.toWei("0.01", "ether"),
+          from: this._accountAddress,
+        });
     } catch (error) {
       console.log(error);
       throw new Error("Failed to Create new Driving License NFT");
@@ -119,7 +136,9 @@ export class DrivingLicenseNFTService {
     if (tokenId < 0) throw new Error("Invalid Token Id");
     try {
       await this.ethEnabled();
-      await this._dlNFTContract.methods.burn(tokenId).send({ from: this._accountAddress });
+      await this._dlNFTContract.methods
+        .burn(tokenId)
+        .send({ from: this._accountAddress });
     } catch (error) {
       console.log(error);
       throw new Error("Failed to delete the NFT");

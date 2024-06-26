@@ -34,7 +34,7 @@ export class DisputeSRService {
       });
       await ethereum.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: `0x539` }],
+        params: [{ chainId: `0xaa36a7` }],
       });
       this._accountAddress = accounts[0];
       this._disputeSRContract = this.getContract();
@@ -51,7 +51,10 @@ export class DisputeSRService {
 
   getContract() {
     const provider = new Web3(window.ethereum);
-    return new provider.eth.Contract(ContractABI["abi"], DISPUTED_SERVICE_REQUEST_ADDRESS);
+    return new provider.eth.Contract(
+      ContractABI["abi"],
+      DISPUTED_SERVICE_REQUEST_ADDRESS
+    );
   }
 
   async getDisputesSRInDriverRegion(): Promise<ISRInfo[]> {
@@ -71,7 +74,9 @@ export class DisputeSRService {
     if (typeof srId !== "number") throw new Error("SR Id is required");
     try {
       await this.ethEnabled();
-      await this._disputeSRContract.methods.vote(srId, voteTo).send({ from: this._accountAddress });
+      await this._disputeSRContract.methods
+        .vote(srId, voteTo)
+        .send({ from: this._accountAddress });
     } catch (error) {
       console.log(error, "error");
       throw new Error("Error while tryign to Vote on a disputed SR");

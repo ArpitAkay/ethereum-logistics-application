@@ -35,7 +35,7 @@ export class UserService {
       });
       await ethereum.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: `0x539` }],
+        params: [{ chainId: `0xaa36a7` }],
       });
       this._accountAddress = accounts[0];
       UserService.accountId = accounts[0];

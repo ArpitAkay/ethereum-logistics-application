@@ -1,13 +1,13 @@
 <p align="center">
-  <img width="100%" alt="front-end-screenshot" src="...to be updated">
+  <img width="100%" alt="front-end-screenshot" src="https://github.com/GeekyAnts/ethereum-logistics-application/blob/main/assests/images/public_dashboard.png?raw=true">
 </p>
 
 ## Important Links
 
-- [Demo link](...to be updated)
-- [Contract Address](...to be updated)
-- [Contract Creator](...to be updated)
-- [Tx Hash of contract creation](...to be updated)
+- [Demo link](https://logistics-2024.web.app/)
+- [Contract Address](https://sepolia.etherscan.io/address/0xd439CAd79f7d38AEF776FF59e9f0bFe80B169198)
+- [Contract Creator](https://sepolia.etherscan.io/address/0xce99a1283beb509b7a5f29ba91d6f6ef9e2f673c)
+- [Tx Hash of contract creation](https://sepolia.etherscan.io/tx/0x3a56393b9c814f3b3abf5cb8c98cfdd6b972fe4899926b2ec1beeb0af8f44cc2)
 
 # Logistics Delivery Application
 
@@ -82,19 +82,19 @@ We propose a blockchain-based solution with an auction system for service reques
 ## How it works
 
 <p align="center">
-  <img width="100%" alt="logistics-delivery-application" src="https://git.geekyants.com/arpitk/logistics-project/-/blob/main/assests/Logistics%20Delivery.jpg?raw=true">
+  <img width="100%" alt="logistics-delivery-application" src="https://github.com/GeekyAnts/ethereum-logistics-application/blob/main/assests/logistics_delivery.jpg?raw=true">
 </p>
 
 ## How the Users and Roles are managed
 
 <p align="center">
-  <img width="100%" alt="user-flow" src="https://git.geekyants.com/arpitk/logistics-project/-/blob/main/assests/Logistics%20Delivery.jpg?raw=true">
+  <img width="100%" alt="user-flow" src="https://github.com/GeekyAnts/ethereum-logistics-application/blob/main/assests/user_flow.jpg?raw=true">
 </p>
 
 ## How the Dispute Resolution works
 
 <p align="center">
-  <img width="100%" alt="dispute-flow" src="https://git.geekyants.com/arpitk/logistics-project/-/blob/main/assests/Logistics%20Delivery.jpg?raw=true">
+  <img width="100%" alt="dispute-flow" src="https://github.com/GeekyAnts/ethereum-logistics-application/blob/main/assests/dispute_flow.jpg?raw=true">
 </p>
 
 ## Let's start with Smart Contracts
@@ -138,7 +138,8 @@ We propose a blockchain-based solution with an auction system for service reques
 
   enum WhomToVote {
     Driver,
-    Receiver
+    Receiver,
+    None
   }
 
   enum Acceptance {
@@ -186,6 +187,11 @@ We propose a blockchain-based solution with an auction system for service reques
     bool serviceFeeRefunded;
   }
 
+  struct BidInfo {
+    address uid;
+    uint256 serviceFee;
+  }
+
   /**
    * @dev For Maintaining vote count for Driver & Receiver in case of dispute
    */
@@ -202,8 +208,6 @@ We propose a blockchain-based solution with an auction system for service reques
     address receiverUID;
     string originGeoHash; // Origin geo hash from where parcel has to be picked up
     string destGeoHash; // Destination geo hash from where parcel has to dropped
-    string originApproxGeoHash; // Approx geo hash for origin
-    string destApproxGeoHash; // Approx geo hash for destination
     uint256 cargoInsurableValue; // Product Value
     uint256 serviceFee; // Delivery charges that shipper is willing to pay
     uint256 requestedPickupTime; // Time at which parcel has to be picket up (In timestamp - seconds)
@@ -212,6 +216,8 @@ We propose a blockchain-based solution with an auction system for service reques
     address driverUID; // System will update this after auction ends
     Status status;
     string disputeWinner; // empty or DRAW or DRIVER or RECEIVER
+    BidInfo bidInfo;
+    bool disputeVoteGiven;
   }
 
   /**
@@ -279,7 +285,8 @@ We propose a blockchain-based solution with an auction system for service reques
 | declareWinner()                  | string \_requestId                                                                                                                           | -                | Declares the winner of an auction for a service request                          |
 | updateSRStatus()                 | string \_requestId,<br>Status \_newStatus                                                                                                    | -                | Updates the status of a service request                                          |
 | getAuctionSRListinDriverRegion() | -                                                                                                                                            | SRInfo[]         | Retrieves all service requests in the driver's region that are ready for auction |
-| getAllSRs()                      | -                                                                                                                                            | SRInfo[]         | Retrieves all service requests                                                   |
+| getAllSRs()                      | -                                                                                                                                            | SRInfo[]         | Retrieves all service requests, Admin can only call this method                  |
+| getMySRs()                       | -                                                                                                                                            | SRInfo[]         | Retrieves all service requests that are specific to requestor                    |
 | decideWinnerForDispute()         | string \_requestId                                                                                                                           | -                | Decides the winner of a dispute for a service request                            |
 
 </details>
@@ -389,16 +396,69 @@ We propose a blockchain-based solution with an auction system for service reques
 
 - Add Hardhat as a network in the Metamask by following [this link](https://docs.metamask.io/wallet/how-to/run-devnet/#connect-to-hardhat-network), You can Navigate to Step-5 in the guide directly.
 
-## Team ✨ (...to be updated)
+## Team ✨
 
 Meet the amazing team who developed this project.
 
-- Suresh Konakachi
-- Arpit Kumar
-- Mohamed Farhan S
-- Anuj Singh
-- Pallab Singha
+<table>
+  <tr>
+    <td align="center"><a href="https://in.linkedin.com/in/sur950"><img src="https://avatars.githubusercontent.com/u/46712434?v=4" width="100px;" alt=""/><br /><sub><b>Suresh Konakanchi</b></sub></a><br /><a href="https://github.com/GeekyAnts/ethereum-logistics-application" title="Code">💻</a> <a href="https://github.com/GeekyAnts/ethereum-logistics-application/" title="Documentation">📖</a> <a href="https://github.com/GeekyAnts/ethereum-logistics-application/issues" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://anujraghuvanshi.vercel.app/"><img src="https://avatars.githubusercontent.com/u/22232709?v=4" width="100px;" alt=""/><br /><sub><b>Anuj Singh</b></sub></a><br /><a href="https://github.com/GeekyAnts/ethereum-logistics-application" title="Code">💻</a> <a href="https://github.com/GeekyAnts/ethereum-logistics-application/" title="Documentation">📖</a> <a href="https://github.com/GeekyAnts/ethereum-logistics-application/issues" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://in.linkedin.com/in/pallabjs"><img src="https://avatars.githubusercontent.com/u/40202700?v=4" width="100px;" alt=""/><br /><sub><b>Pallab Singha</b></sub></a><br /><a href="https://github.com/GeekyAnts/ethereum-logistics-application" title="Code">💻</a> <a href="https://github.com/GeekyAnts/ethereum-logistics-application/" title="Documentation">📖</a> <a href="https://github.com/GeekyAnts/ethereum-logistics-application/issues" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://geekyants.com/arpit-kumar"><img src="https://geekyants.com/_next/image?url=https%3A%2F%2Fstatic-cdn.geekyants.com%2Fuser%2F993%2F2022-09-07%2F166253904514100.png" width="100px;" alt=""/><br /><sub><b>Arpit Kumar</b></sub></a><br /><a href="https://github.com/GeekyAnts/ethereum-logistics-application" title="Code">💻</a> <a href="https://github.com/GeekyAnts/ethereum-logistics-application/" title="Documentation">📖</a> <a href="https://github.com/GeekyAnts/ethereum-logistics-application/issues" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://geekyants.com/mohamed-farhan-s"><img src="https://geekyants.com/_next/image?url=https%3A%2F%2Fstatic-cdn.geekyants.com%2Fuser%2F1063%2F2022-09-07%2F166253931028516.png" width="100px;" alt=""/><br /><sub><b>Mohamed Farhan S</b></sub></a><br /><a href="https://github.com/GeekyAnts/ethereum-logistics-application" title="Code">💻</a> <a href="https://github.com/GeekyAnts/ethereum-logistics-application/" title="Documentation">📖</a> <a href="https://github.com/GeekyAnts/ethereum-logistics-application/issues" title="Maintenance">🚧</a></td>
+  </tr>
+  </table>
 
 # How frontend works
 
-... Add Screenshots with headings
+<details open>
+<summary><font size="+0.85"> &nbsp;&nbsp;Service Requests </font></summary>
+
+<p align="center">
+  <img width="100%" alt="user-flow" src="https://github.com/GeekyAnts/ethereum-logistics-application/blob/main/assests/images/create_sr.png?raw=true">
+</p>
+
+<p align="center">
+  <img width="100%" alt="user-flow" src="https://github.com/GeekyAnts/ethereum-logistics-application/blob/main/assests/images/sr_details.png?raw=true">
+</p>
+
+</details>
+
+<details>
+<summary><font size="+0.85"> &nbsp;&nbsp;Dispute, Auction Flows </font></summary>
+
+<p align="center">
+  <img width="100%" alt="user-flow" src="https://github.com/GeekyAnts/ethereum-logistics-application/blob/main/assests/images/shipper_dashboard.png?raw=true">
+</p>
+
+<p align="center">
+  <img width="100%" alt="user-flow" src="https://github.com/GeekyAnts/ethereum-logistics-application/blob/main/assests/images/receiver_dashboard.png?raw=true">
+</p>
+
+<p align="center">
+  <img width="100%" alt="user-flow" src="https://github.com/GeekyAnts/ethereum-logistics-application/blob/main/assests/images/driver_dashboard.png?raw=true">
+</p>
+
+<p align="center">
+  <img width="100%" alt="user-flow" src="https://github.com/GeekyAnts/ethereum-logistics-application/blob/main/assests/images/shipper_disputes.png?raw=true">
+</p>
+
+</details>
+
+<details>
+<summary><font size="+0.85"> &nbsp;&nbsp;Profile & NFT Flows </font></summary>
+
+<p align="center">
+  <img width="100%" alt="user-flow" src="https://github.com/GeekyAnts/ethereum-logistics-application/blob/main/assests/images/profile.png?raw=true">
+</p>
+
+<p align="center">
+  <img width="100%" alt="user-flow" src="https://github.com/GeekyAnts/ethereum-logistics-application/blob/main/assests/images/role_requests.png?raw=true">
+</p>
+
+<p align="center">
+  <img width="100%" alt="user-flow" src="https://github.com/GeekyAnts/ethereum-logistics-application/blob/main/assests/images/dl_nft.png?raw=true">
+</p>
+
+</details>

@@ -8,9 +8,8 @@ export const Footer = () => {
       style={{ height: CONSTANTS.FOOTER_HEIGHT }}
     >
       <div>
-        © {new Date().getFullYear()} GeekyAnts. All rights reserved. This
-        project uses trademarks under fair use for non-commercial, open-source
-        purposes. If required, we will promptly remove them.
+        © {new Date().getFullYear()} GeekyAnts. All rights reserved. Used
+        trademarks under fair use for non-commercial, open-source purposes.
       </div>
       <div className="flex gap-2 items-center bottom-0 ml-0 sm:ml-auto">
         Made with love by
