@@ -89,8 +89,9 @@ export const updateUserInfo = createAsyncThunk(
       const currentRole = getUserRoleId();
       const user: IUser = convertBigIntToString(userRes);
       dispatch(
-        setUserRole((user.role.includes(currentRole) && currentRole) || user.role[0]) ||
-          EUserRole.None
+        setUserRole(
+          (user.role.includes(currentRole) && currentRole) || user.role[0] || EUserRole.None
+        )
       );
       saveValueToLocalStorage(CONSTANTS.ACCOUNT_ADDRESS, userId);
 
